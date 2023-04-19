@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "axios": "^1.3.5",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "node": "^19.8.1"
+  },
+  "name": "holiday-plan",
+  "description": "to do holiday plan list",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Runanka/Holiday-Plan.git"
+  },
+  "keywords": [
+    "node.js",
+    "node",
+    "ejs",
+    "html",
+    "css",
+    "express"
+  ],
+  "author": "Runanka Roy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Runanka/Holiday-Plan/issues"
+  },
+  "homepage": "https://github.com/Runanka/Holiday-Plan#readme"
+}
