@@ -24,10 +24,9 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.render("index", {
-    temperature: "",
-    weatherDescription: "",
-    timezone: "",
-    plan: "",
+    infoLine:
+      "Welcome to our travel planning page! Please enter the name of the city you want to explore, and we will create a customized travel plan for you. Please note that it may take a few moments for us to generate your personalized plan. Get ready to embark on a journey of discovery and adventure!",
+    parArray: [],
   });
 });
 
@@ -50,10 +49,9 @@ app.post("/", async (req, res) => {
     now.setUTCMinutes(now.getUTCMinutes() + 30); // add 30 minutes (1800 seconds)
     now.setUTCMinutes(0, 0, 0); // round down to the nearest hour
     const utcTime =
-      Number(now.toISOString().substr(11, 2)) > 9
+      Number(now.toISOString().substr(11, 2)) > 8
         ? now.toISOString().substr(11, 2)
-        : "9";
-    console.log(utcTime);
+        : "8";
 
     const prompt =
       "Plan my unique holiday in " +
@@ -69,23 +67,25 @@ app.post("/", async (req, res) => {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
+      temperature: 0.6,
     });
 
     const plan = completion.data.choices[0].message.content;
-    console.log(plan);
+    const myArray = plan.split("\n\n");
 
     res.render("index", {
-      temperature: temperature,
-      weatherDescription: weatherDescription,
-      timezone: timezone,
-      plan: plan,
+      infoLine:
+        "'The world is a book, and those who do not travel read only a page.' - Saint Augustine",
+      parArray: myArray,
     });
   } catch (err) {
-    console.log(err.response.data.cod, err.response.data.message);
-    res.status(err.response.data.cod).send(err.response.data.message);
+    res.render("index", {
+      infoLine: err.response.data.message,
+      parArray: [],
+    });
   }
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started on port 3000");
 });

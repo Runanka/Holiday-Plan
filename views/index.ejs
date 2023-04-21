@@ -4,21 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Holiday Planning</title>
     <link rel="stylesheet" href="/CSS/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Holiday Planning</title>
   </head>
+
   <body>
-    <h1>Plan your holiday in seconds</h1>
-    <form action="/" method="POST">
-      <label for="destination">Destination</label>
-      <input type="text" name="cityName" id="destination" />
-      <button type="submit">Plan</button>
-    </form>
-    <h1>
-      the temperature is <%= temperature %> celcius, and <%= weatherDescription
-      %>, and ahead of <%= timezone%>
-    </h1>
-    <p><%= plan %></p>
-    <script src="app.js"></script>
+    <nav class="navbar">
+      <div>
+        <a class="navbar-brand-text"><span class="bold-text">Day</span>Plan</a>
+      </div>
+    </nav>
+    <h1 class="title">Let us plan your perfect getaway in just a click!</h1>
+
+    <div class="search-section">
+      <div class="search-box">
+        <i class="fa-solid fa-location-dot"></i>
+        <form action="/" method="POST">
+          <input
+            type="text"
+            name="cityName"
+            placeholder="CITY"
+            autocomplete="off"
+          />
+          <button
+            type="submit"
+            class="fa-solid fa-magnifying-glass"
+            id="search-btn"
+          ></button>
+        </form>
+      </div>
+    </div>
+    <h5 id="info"><%= infoLine %></h5>
+    <div class="paras">
+      <% for(let i = 0; i < parArray.length; i++){ %>
+      <p class="paragraph fadeIn"><%= parArray[i] %></p>
+      <%}%>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/7c8801c017.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
